@@ -10,22 +10,39 @@
 #import "BirthdaysInformation.h"
 #import "AddingBirthdaysViewController.h"
 
+
+
 @interface BirthdaysViewController ()
 
 @property(nonatomic, strong) UITableView* tableView;
 @property(nonatomic, strong) NSMutableArray<BirthdaysInformation*>* dataSource;
 @property(nonatomic, strong) BirthdaysInformation* birthdays;
 
-
 @end
 
-@implementation BirthdaysViewController
+
+
+
+
+ @implementation BirthdaysViewController
+
+NSDateFormatter *dateFormatter;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
+    [self dataSourceMethod];
+    
+    dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateStyle = NSDateIntervalFormatterLongStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
     
 }
+
+   
+
+
 
 -(void)setupViews {
     
@@ -65,21 +82,33 @@
     
     
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId" forIndexPath:indexPath];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"MMMM d, EEEE, YYYY"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
     
-    cell.textLabel.text = [self.birthdays.name stringByAppendingString:self.birthdays.surname];
-    cell.detailTextLabel.text = [dateFormatter stringFromDate:self.birthdays.birthdate];
+    cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellId"];
+    
+   BirthdaysInformation* birthCell = self.dataSource[indexPath.row];
+    
+    cell.textLabel.text = [birthCell.name stringByAppendingFormat:@" %@", birthCell.surname];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate: birthCell.birthdate];
+
+
+
     
     return cell;
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+    
+
+
 
 #pragma mark - Handlers
 
@@ -88,6 +117,14 @@
 }
 
 
+-(void)dataSourceMethod {
+    self.dataSource = [NSMutableArray arrayWithArray:@[
+        
+        [[BirthdaysInformation alloc]initWithName:@"Alex" Surname:@"Petrov" andBirthdate: [NSDate dateWithTimeIntervalSinceReferenceDate:1]],
+       
+        
+    ]];
+}
 
 
 

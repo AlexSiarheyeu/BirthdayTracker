@@ -7,8 +7,16 @@
 //
 
 #import "AddingBirthdaysViewController.h"
+#import "BirthdaysInformation.h"
 
 @interface AddingBirthdaysViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *name;
+@property (weak, nonatomic) IBOutlet UITextField *surname;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+- (IBAction)saveButton:(id)sender;
+- (IBAction)cancelButton:(id)sender;
 
 @end
 
@@ -16,17 +24,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupViews];
     
-    
-   
+    self.datePicker.maximumDate = [NSDate date];
 }
 
--(void)setupViews {
-    
-    
+- (IBAction)cancelButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)saveButton:(id)sender {
+    NSString *firstName = self.name.text;
+    NSString *lastName = self.surname.text;
+    NSDate *date = self.datePicker.date;
+    
+    BirthdaysInformation *birthdayInit = [[BirthdaysInformation alloc]initWithName:firstName Surname:lastName andBirthdate:date];
+    
+    NSLog( @"My  name is %@ %@ %@", birthdayInit.name, birthdayInit.surname, birthdayInit.birthdate);
 
 
+}
 @end

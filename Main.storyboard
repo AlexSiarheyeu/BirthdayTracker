@@ -33,10 +33,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="rkq-M9-ta7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="h79-xs-mzj"/>
-                    <connections>
-                        <segue destination="FIa-xj-gMm" kind="show" identifier="add" id="y3d-ud-oJm"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="h79-xs-mzj">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="Zib-cn-N5X">
+                            <connections>
+                                <segue destination="FIa-xj-gMm" kind="presentation" identifier="add" id="n7d-M7-W5v"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kyk-fN-x8a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,11 +50,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddingBirthdaysViewController" id="FIa-xj-gMm" customClass="AddingBirthdaysViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="njx-2m-tGw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbW-vt-u5j">
-                                <rect key="frame" x="30" y="144" width="354" height="34"/>
+                                <rect key="frame" x="30" y="139" width="354" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="YhC-1C-Afh"/>
                                 </constraints>
@@ -59,44 +62,68 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VTi-tz-dl9">
-                                <rect key="frame" x="30" y="248" width="354" height="34"/>
+                                <rect key="frame" x="30" y="243" width="354" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Gus-1Q-8vl"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="Zcf-1a-bMu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="snM-w9-Lhx">
-                                <rect key="frame" x="47" y="382" width="320" height="330"/>
-                            </datePicker>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftE-kD-2yh">
-                                <rect key="frame" x="0.0" y="10" width="414" height="78"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K1O-3j-hUZ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <navigationItem title="Title" prompt="k" leftItemsSupplementBackButton="YES" id="Yzz-z2-1fS"/>
+                                    <navigationItem id="gc1-6a-dUE">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sXa-E7-Hn7">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="FIa-xj-gMm" id="gfZ-Db-dfu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OLH-MY-frM">
+                                            <connections>
+                                                <action selector="saveButton:" destination="FIa-xj-gMm" id="57X-xA-J3j"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="V9K-Sj-zPU">
+                                <rect key="frame" x="20" y="392" width="374" height="216"/>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-3187255800">
+                                    <!--1900-01-01 11:10:00 AM +0000-->
+                                </date>
+                                <date key="maximumDate" timeIntervalSinceReferenceDate="631105200">
+                                    <!--2020-12-31 11:00:00 AM +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="CbW-vt-u5j" firstAttribute="top" secondItem="U0D-nU-1iX" secondAttribute="top" constant="100" id="63m-Oc-Twf"/>
-                            <constraint firstItem="snM-w9-Lhx" firstAttribute="top" secondItem="VTi-tz-dl9" secondAttribute="bottom" constant="100" id="74v-mg-s4n"/>
-                            <constraint firstItem="U0D-nU-1iX" firstAttribute="bottom" secondItem="snM-w9-Lhx" secondAttribute="bottom" constant="150" id="DUz-po-iHk"/>
+                            <constraint firstItem="V9K-Sj-zPU" firstAttribute="top" secondItem="VTi-tz-dl9" secondAttribute="bottom" constant="115" id="9dd-Xo-k3L"/>
+                            <constraint firstItem="V9K-Sj-zPU" firstAttribute="leading" secondItem="U0D-nU-1iX" secondAttribute="leading" constant="20" id="C3d-49-Zcp"/>
+                            <constraint firstItem="U0D-nU-1iX" firstAttribute="bottom" secondItem="V9K-Sj-zPU" secondAttribute="bottom" constant="200" id="QMI-Aa-IWf"/>
                             <constraint firstItem="U0D-nU-1iX" firstAttribute="trailing" secondItem="CbW-vt-u5j" secondAttribute="trailing" constant="30" id="Za5-2Y-Cl8"/>
                             <constraint firstItem="VTi-tz-dl9" firstAttribute="leading" secondItem="U0D-nU-1iX" secondAttribute="leading" constant="30" id="dob-aR-AZu"/>
                             <constraint firstItem="VTi-tz-dl9" firstAttribute="top" secondItem="CbW-vt-u5j" secondAttribute="bottom" constant="70" id="f5I-aB-J7g"/>
+                            <constraint firstItem="U0D-nU-1iX" firstAttribute="trailing" secondItem="V9K-Sj-zPU" secondAttribute="trailing" constant="20" id="irq-PA-9YI"/>
                             <constraint firstItem="CbW-vt-u5j" firstAttribute="leading" secondItem="U0D-nU-1iX" secondAttribute="leading" constant="30" id="jee-KX-R6l"/>
-                            <constraint firstItem="snM-w9-Lhx" firstAttribute="centerX" secondItem="njx-2m-tGw" secondAttribute="centerX" id="mdK-6L-RZ6"/>
+                            <constraint firstItem="CbW-vt-u5j" firstAttribute="top" secondItem="U0D-nU-1iX" secondAttribute="top" constant="139" id="riV-b9-YPY"/>
                             <constraint firstItem="U0D-nU-1iX" firstAttribute="trailing" secondItem="VTi-tz-dl9" secondAttribute="trailing" constant="30" id="tmv-KD-Qgz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U0D-nU-1iX"/>
                     </view>
                     <navigationItem key="navigationItem" id="aL5-WR-Fpm"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="datePicker" destination="V9K-Sj-zPU" id="8Vm-Pr-6cj"/>
+                        <outlet property="name" destination="CbW-vt-u5j" id="ZHl-Xu-gh0"/>
+                        <outlet property="surname" destination="VTi-tz-dl9" id="5nq-wX-OHZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jr6-8t-lEI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="822" y="29"/>
+            <point key="canvasLocation" x="821.73913043478262" y="28.794642857142854"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
