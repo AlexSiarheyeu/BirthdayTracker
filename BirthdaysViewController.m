@@ -37,22 +37,16 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-//    UINavigationController *navigationController = [[UINavigationController alloc]init];
-//    navigationController = (UINavigationController*)segue.destinationViewController;
-//
-//    AddingBirthdaysViewController *addBirthdayViewController = [[AddingBirthdaysViewController alloc]init];
-//
-//    //addBirthdayViewController = navigationController.topViewController;
-//    //addBirthdayViewController = (AddingBirthdaysViewController*)addBirthdayViewController;
-//
-//    addBirthdayViewController = (AddingBirthdaysViewController*)navigationController.topViewController;
-//
-//    addBirthdayViewController.birthdayDelegate = self;
-    
-    
-    
 
+    UINavigationController *navigationController = [[UINavigationController alloc]init];
+    navigationController = (UINavigationController*)segue.destinationViewController;
+
+    AddingBirthdaysViewController *addBirthdayViewController =
+    [[AddingBirthdaysViewController alloc]init];
+
+    addBirthdayViewController = (AddingBirthdaysViewController*)navigationController;
+
+    addBirthdayViewController.birthdayDelegate = self;
 }
 
 -(void)setupViews {
@@ -126,12 +120,7 @@
 
 
 -(void)dataSourceMethod {
-    self.dataSource = [NSMutableArray arrayWithArray:@[
-        
-        [[BirthdaysInformation alloc]initWithName:@"Alex" Surname:@"Petrov" andBirthdate: [NSDate dateWithTimeIntervalSinceReferenceDate:1]],
-       
-        
-    ]];
+    self.dataSource = [NSMutableArray arrayWithArray:@[]];
 }
 
 #pragma mark - AddingBirthdaysViewControllerDelegate

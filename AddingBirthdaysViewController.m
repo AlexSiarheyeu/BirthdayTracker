@@ -43,7 +43,7 @@
     BirthdaysInformation *birthdayInit = [[BirthdaysInformation alloc]initWithName:firstName Surname:lastName andBirthdate:date];
     [self.birthdayDelegate addBirthdayViewController:self didAdd:birthdayInit];
   
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     NSLog( @"My  name is %@ %@ %@", birthdayInit.name, birthdayInit.surname, birthdayInit.birthdate);
     
