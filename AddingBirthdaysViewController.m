@@ -9,6 +9,7 @@
 #import "AddingBirthdaysViewController.h"
 #import "BirthdaysInformation.h"
 
+
 @interface AddingBirthdaysViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *name;
@@ -21,6 +22,8 @@
 @end
 
 @implementation AddingBirthdaysViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,9 +41,12 @@
     NSDate *date = self.datePicker.date;
     
     BirthdaysInformation *birthdayInit = [[BirthdaysInformation alloc]initWithName:firstName Surname:lastName andBirthdate:date];
+    [self.birthdayDelegate addBirthdayViewController:self didAdd:birthdayInit];
+  
+    //[self dismissViewControllerAnimated:YES completion:nil];
     
     NSLog( @"My  name is %@ %@ %@", birthdayInit.name, birthdayInit.surname, birthdayInit.birthdate);
-
+    
 
 }
 @end

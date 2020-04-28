@@ -12,7 +12,7 @@
 
 
 
-@interface BirthdaysViewController ()
+@interface BirthdaysViewController () 
 
 @property(nonatomic, strong) UITableView* tableView;
 @property(nonatomic, strong) NSMutableArray<BirthdaysInformation*>* dataSource;
@@ -20,13 +20,9 @@
 
 @end
 
+@implementation BirthdaysViewController
 
-
-
-
- @implementation BirthdaysViewController
-
-NSDateFormatter *dateFormatter;
+ NSDateFormatter *dateFormatter;
 
 
 - (void)viewDidLoad {
@@ -40,9 +36,24 @@ NSDateFormatter *dateFormatter;
     
 }
 
-   
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+//    UINavigationController *navigationController = [[UINavigationController alloc]init];
+//    navigationController = (UINavigationController*)segue.destinationViewController;
+//
+//    AddingBirthdaysViewController *addBirthdayViewController = [[AddingBirthdaysViewController alloc]init];
+//
+//    //addBirthdayViewController = navigationController.topViewController;
+//    //addBirthdayViewController = (AddingBirthdaysViewController*)addBirthdayViewController;
+//
+//    addBirthdayViewController = (AddingBirthdaysViewController*)navigationController.topViewController;
+//
+//    addBirthdayViewController.birthdayDelegate = self;
+    
+    
+    
 
-
+}
 
 -(void)setupViews {
     
@@ -97,15 +108,12 @@ NSDateFormatter *dateFormatter;
     cell.textLabel.text = [birthCell.name stringByAppendingFormat:@" %@", birthCell.surname];
     cell.detailTextLabel.text = [dateFormatter stringFromDate: birthCell.birthdate];
 
-
-
-    
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return 2;
+//}
     
 
 
@@ -124,6 +132,14 @@ NSDateFormatter *dateFormatter;
        
         
     ]];
+}
+
+#pragma mark - AddingBirthdaysViewControllerDelegate
+
+- (void)addBirthdayViewController:(AddingBirthdaysViewController *)addingToViewController didAdd:(BirthdaysInformation *)birthdayInfo {
+    
+    [self.dataSource addObject: birthdayInfo];
+    [self.tableView reloadData];
 }
 
 

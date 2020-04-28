@@ -7,12 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BirthdaysInformation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@protocol AddingBirthdaysViewControllerDelegate;
+
+
 @interface AddingBirthdaysViewController : UIViewController
 
+@property(weak, nonatomic) id <AddingBirthdaysViewControllerDelegate> birthdayDelegate;
 
+@end
+
+
+@protocol AddingBirthdaysViewControllerDelegate
+@required
+-(void)addBirthdayViewController: (AddingBirthdaysViewController*) addingToViewController
+                          didAdd: (BirthdaysInformation*)birthdayInfo;
 
 @end
 
