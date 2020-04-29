@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "BirthdaysInformation.h"
 
 NS_ASSUME_NONNULL_BEGIN

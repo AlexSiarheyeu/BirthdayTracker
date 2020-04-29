@@ -2,7 +2,7 @@
 //  BirthdaysInformation.h
 //  BirthdayTracker
 //
-//  Created by Alexey Sergeev on 4/26/20.
+//  Created by Alexey Sergeev on 4/29/20.
 //  Copyright © 2020 Alexey Sergeev. All rights reserved.
 //
 
@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSDate* birthdate;
 
 -(instancetype)initWithName: (NSString*)name Surname:(NSString*)surname andBirthdate:(NSDate*)birthdate;
-
 
 @end
 
