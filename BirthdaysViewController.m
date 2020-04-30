@@ -105,9 +105,21 @@
     return cell;
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 2;
-//}
+//delete birthday
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIContextualAction *delete = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal
+                                                                        title:@"Delete"
+                                                                       handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [self.dataSource removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        completionHandler(YES);
+    }];
+    
+    delete.backgroundColor = UIColor.systemRedColor;
+    return [UISwipeActionsConfiguration configurationWithActions:@[delete]];
+}
+
     
 
 
