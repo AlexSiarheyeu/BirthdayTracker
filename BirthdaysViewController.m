@@ -36,6 +36,9 @@
     
 }
 
+#pragma mark - AddingBirthdaysViewControllerDelegate implementation -
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
     UINavigationController *navigationController = [[UINavigationController alloc]init];

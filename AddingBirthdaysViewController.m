@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *surname;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)saveButton:(id)sender;
 - (IBAction)cancelButton:(id)sender;
@@ -27,9 +28,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self subscribeToKeyboardNotifications];
+
     
     self.datePicker.maximumDate = [NSDate date];
 }
+#pragma mark - Keyboard notification center
+-(void)subscribeToKeyboardNotifications {
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                        selector:@selector(keyboardWillShow:)
+                                        name:UIKeyboardWillShowNotification
+                                        object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                        selector:@selector(keyboardWilHide:)
+                                        name:UIKeyboardWillHideNotification
+                                        object:nil];
+    
+    
+}
+
+-(void)keyboardWillShow:(NSNotification*)notification {
+    NSLog(@"work");
+   
+
+    
+}
+
+-(void)keyboardWilHide: (NSNotification*)notification {
+    [self.scrollView setLargeContentImageInsets:UIEdgeInsetsZero];
+}
+
 
 - (IBAction)cancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

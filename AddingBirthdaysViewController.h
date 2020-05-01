@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol AddingBirthdaysViewControllerDelegate;
 
 
-@interface AddingBirthdaysViewController : UIViewController
+@interface AddingBirthdaysViewController : UIViewController <UIScrollViewDelegate>
 
 @property(weak, nonatomic) id <AddingBirthdaysViewControllerDelegate> birthdayDelegate;
 
