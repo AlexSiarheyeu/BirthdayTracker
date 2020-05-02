@@ -69,6 +69,11 @@
 }
 
 - (IBAction)saveButton:(id)sender {
+    
+//    if ([self.surname.text isEqualToString:@""] && [self.name.text isEqualToString:@""]) {
+//
+//    } else {
+        
     NSString *firstName = self.name.text;
     NSString *lastName = self.surname.text;
     NSDate *date = self.datePicker.date;
@@ -77,6 +82,6 @@
     [self.birthdayDelegate addBirthdayViewController:self didAdd:birthdayInit];
   
     [self dismissViewControllerAnimated:YES completion:nil];
-    
+    }
 }
 @end
