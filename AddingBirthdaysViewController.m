@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *surname;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)saveButton:(id)sender;
@@ -29,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self subscribeToKeyboardNotifications];
+    self.scrollView.delegate = self;
 
     
     self.datePicker.maximumDate = [NSDate date];
@@ -50,14 +52,15 @@
 }
 
 -(void)keyboardWillShow:(NSNotification*)notification {
-    NSLog(@"work");
-   
+   NSLog(@"%@", notification);
+   CGRect keyboardRect = [(NSValue *)notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    [self.scrollView setContentInset:UIEdgeInsetsMake(0, 0, keyboardRect.size.height + self.datePicker.safeAreaInsets.bottom + 370, 0)];
 
     
 }
 
 -(void)keyboardWilHide: (NSNotification*)notification {
-    [self.scrollView setLargeContentImageInsets:UIEdgeInsetsZero];
+    [self.scrollView setContentInset:UIEdgeInsetsZero];
 }
 
 
@@ -75,8 +78,5 @@
   
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    NSLog( @"My  name is %@ %@ %@", birthdayInit.name, birthdayInit.surname, birthdayInit.birthdate);
-    
-
 }
 @end
