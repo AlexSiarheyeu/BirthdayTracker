@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 #import "BirthdaysInformation.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -16,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol AddingBirthdaysViewControllerDelegate;
 
 
-@interface AddingBirthdaysViewController : UIViewController <UIScrollViewDelegate>
+@interface AddingBirthdaysViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate>
 
 @property(weak, nonatomic) id <AddingBirthdaysViewControllerDelegate> birthdayDelegate;
 

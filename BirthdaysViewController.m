@@ -11,7 +11,6 @@
 #import "AddingBirthdaysViewController.h"
 
 
-
 @interface BirthdaysViewController () 
 
 @property(nonatomic, strong) UITableView* tableView;
@@ -34,7 +33,9 @@
     dateFormatter.dateStyle = NSDateIntervalFormatterLongStyle;
     dateFormatter.timeStyle = NSDateFormatterNoStyle;
     
+    
 }
+
 
 #pragma mark - AddingBirthdaysViewControllerDelegate implementation -
 
@@ -62,12 +63,14 @@
     
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
+    
     // Setup Table View
     
     self.tableView = [[UITableView alloc]init];
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    //self.tableView.backgroundColor = [UIColor colorNamed:@"CustomColor"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"CellId"];
     [self.view addSubview:self.tableView];
     
@@ -100,11 +103,16 @@
     
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellId"];
     
-   BirthdaysInformation* birthCell = self.dataSource[indexPath.row];
+
     
+    
+   BirthdaysInformation* birthCell = self.dataSource[indexPath.row];
+
     cell.textLabel.text = [birthCell.name stringByAppendingFormat:@" %@", birthCell.surname];
     cell.detailTextLabel.text = [dateFormatter stringFromDate: birthCell.birthdate];
 
+    
+    
     return cell;
 }
 
@@ -123,10 +131,6 @@
     return [UISwipeActionsConfiguration configurationWithActions:@[delete]];
 }
 
-    
-
-
-
 #pragma mark - Handlers
 
 -(void)addBirthdayButton {
@@ -141,10 +145,11 @@
 #pragma mark - AddingBirthdaysViewControllerDelegate
 
 - (void)addBirthdayViewController:(AddingBirthdaysViewController *)addingToViewController didAdd:(BirthdaysInformation *)birthdayInfo {
-    
+
     [self.dataSource addObject: birthdayInfo];
     [self.tableView reloadData];
 }
+
 
 
 
