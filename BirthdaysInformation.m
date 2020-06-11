@@ -13,11 +13,13 @@
 - (instancetype)initWithName:(NSString *)name Surname:(NSString *)surname andBirthdate:(NSDate *)birthdate {
     self = [super init];
     if (self) {
-        self.name = name;
-        self.surname = surname;
-        self.birthdate = birthdate;
+        _name = name;
+        _surname = surname;
+        _birthdate = birthdate;
     }
     return  self;
 }
+
+
 
 @end

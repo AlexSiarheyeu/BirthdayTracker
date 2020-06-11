@@ -11,6 +11,7 @@
 #import "AddingBirthdaysViewController.h"
 
 
+
 @interface BirthdaysViewController () 
 
 @property(nonatomic, strong) UITableView* tableView;
@@ -32,6 +33,7 @@
     dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateStyle = NSDateIntervalFormatterLongStyle;
     dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    
     
     
 }
@@ -70,7 +72,6 @@
     self.tableView.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    //self.tableView.backgroundColor = [UIColor colorNamed:@"CustomColor"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"CellId"];
     [self.view addSubview:self.tableView];
     
@@ -85,6 +86,7 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70.0;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,6 +96,7 @@
     
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return self.dataSource.count;
 }
 
@@ -102,26 +105,22 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellId"];
     
     cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellId"];
-    
 
-    
-    
    BirthdaysInformation* birthCell = self.dataSource[indexPath.row];
 
     cell.textLabel.text = [birthCell.name stringByAppendingFormat:@" %@", birthCell.surname];
     cell.detailTextLabel.text = [dateFormatter stringFromDate: birthCell.birthdate];
-
-    
-    
     return cell;
 }
 
 //delete birthday
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIContextualAction *delete = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleNormal
-                                                                        title:@"Delete"
-                                                                       handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+    UIContextualAction *delete = [UIContextualAction contextualActionWithStyle:
+                                  UIContextualActionStyleNormal
+                                    title:@"Delete"
+                                      handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        
         [self.dataSource removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         completionHandler(YES);
@@ -145,7 +144,7 @@
 #pragma mark - AddingBirthdaysViewControllerDelegate
 
 - (void)addBirthdayViewController:(AddingBirthdaysViewController *)addingToViewController didAdd:(BirthdaysInformation *)birthdayInfo {
-
+    
     [self.dataSource addObject: birthdayInfo];
     [self.tableView reloadData];
 }

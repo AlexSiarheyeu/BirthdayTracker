@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSString* surname;
 @property(nonatomic, strong) NSDate* birthdate;
 
+
 -(instancetype)initWithName: (NSString*)name Surname:(NSString*)surname andBirthdate:(NSDate*)birthdate;
+
 
 @end
 
